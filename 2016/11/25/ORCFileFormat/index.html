@@ -1,0 +1,743 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DB," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ORC File Format">
+<meta name="keywords" content="DB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ORCFileFormat">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/ORCFileFormat/index.html">
+<meta property="og:site_name" content="Alphabet">
+<meta property="og:description" content="ORC File Format">
+<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/RowGroup.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/OrcFileLayout.png">
+<meta property="og:updated_time" content="2016-11-24T16:21:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ORCFileFormat">
+<meta name="twitter:description" content="ORC File Format">
+<meta name="twitter:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/RowGroup.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/25/ORCFileFormat/"/>
+
+
+
+
+
+  <title> ORCFileFormat | Alphabet </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Alphabet</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Chinese phonetic alphabet, English alphabet</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/25/ORCFileFormat/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alan">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Alphabet">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Alphabet" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ORCFileFormat
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-25T00:21:26+08:00">
+                2016-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DB/" itemprop="url" rel="index">
+                    <span itemprop="name">DB</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/25/ORCFileFormat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/25/ORCFileFormat/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+              <div class="post-description">
+                  ORC File Format
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-常见数据存储方式："><a href="#1-常见数据存储方式：" class="headerlink" title="1. 常见数据存储方式："></a>1. 常见数据存储方式：</h1><ul>
+<li><p>1.1 水平的行存储（最常见）：</p>
+<ul>
+<li>一行中很多列，我们只取很少的几列，但是却需要把一行所有列读出来再筛选；</li>
+<li>一行中列的类型不一致，压缩比低；</li>
+</ul>
+</li>
+<li><p>1.2 垂直的列存储：一行中的列可能分布在多个块上（不同行）；</p>
+</li>
+<li><p>1.3 混合的PAX存储：结合行存储和列存储的优势，RCFile就继承于此思想；</p>
+</li>
+</ul>
+<h1 id="2-RCFile"><a href="#2-RCFile" class="headerlink" title="2. RCFile"></a>2. RCFile</h1><p><img src="ORCFileFormat/RowGroup.jpg" alt="RowGroup.jpg"></p>
+<ul>
+<li><p>RowGroup为RCFile的基本单位</p>
+<ul>
+<li>sync marker：标记连续RowGroup</li>
+<li>metadata header：记录每个RowGroup有多少行数据，每列多少字节以及每列一行数据的字节数</li>
+<li>data：实际数据，按列存储</li>
+</ul>
+</li>
+<li><p>视每一列为无含义的二进制块</p>
+</li>
+</ul>
+<h1 id="3-ORCFile"><a href="#3-ORCFile" class="headerlink" title="3. ORCFile"></a>3. ORCFile</h1><p><img src="ORCFileFormat/OrcFileLayout.png" alt="OrcFileLayout.png"></p>
+<h2 id="3-1-Stripe"><a href="#3-1-Stripe" class="headerlink" title="3.1 Stripe"></a>3.1 Stripe</h2><p>每个stripe默认250MB，相当于rcfile的RowGroup，不过大小由4MB变为250MB，提升顺序读的吞吐率。每个Stripe里有三部分组成，分别是Index Data,Row Data,Stripe Footer；</p>
+<h3 id="Index-Data"><a href="#Index-Data" class="headerlink" title="Index Data"></a>Index Data</h3><blockquote>
+<p>一个轻量级的index，默认是每隔1W行做一个索引。这里做的索引只是记录每行的各字段在Row Data中的offset以及每个Column的max和min值。</p>
+</blockquote>
+<h3 id="Row-Data"><a href="#Row-Data" class="headerlink" title="Row Data"></a>Row Data</h3><blockquote>
+<p>存的是具体的数据，和RCfile一样，先取部分行，然后对这些行按列进行存储。与RCfile不同的地方在于对每个列进行了编码，分成多个Stream来存储，进一步减少所占空间。</p>
+</blockquote>
+<h3 id="Stripe-Footer"><a href="#Stripe-Footer" class="headerlink" title="Stripe Footer"></a>Stripe Footer</h3><blockquote>
+<p>存的是各个Stream的类型，长度等信息。</p>
+</blockquote>
+<h2 id="3-2-File-Tail"><a href="#3-2-File-Tail" class="headerlink" title="3.2 File Tail"></a>3.2 File Tail</h2><h3 id="PostScript"><a href="#PostScript" class="headerlink" title="PostScript"></a>PostScript</h3><blockquote>
+<p>主要是用来存储压缩参数及压缩页脚的大小</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">message PostScript &#123;</div><div class="line">  // footer部分所占字节数的长度</div><div class="line">  optional uint64 footerLength = 1;</div><div class="line">  // 压缩类型</div><div class="line">  optional CompressionKind compression = 2;</div><div class="line">  // the maximum size of each compression chunk</div><div class="line">  optional uint64 compressionBlockSize = 3;</div><div class="line">  // the version of the writer</div><div class="line">  repeated uint32 version = 4 [packed = true];</div><div class="line">  // metadata部分所占字节数的长度</div><div class="line">  optional uint64 metadataLength = 5;</div><div class="line">  // the fixed string &quot;ORC&quot;</div><div class="line">  optional string magic = 8000;</div><div class="line">&#125;</div><div class="line"></div><div class="line">enum CompressionKind &#123;</div><div class="line">  NONE = 0;</div><div class="line">  ZLIB = 1;</div><div class="line">  SNAPPY = 2;</div><div class="line">  LZO = 3;</div><div class="line">  LZ4 = 4;</div><div class="line">  ZSTD = 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h3><blockquote>
+<p>每个文件有一个File Footer，存的是每个Stripe的行数，每个Column的数据类型信息等。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">message Footer &#123;</div><div class="line">  // the length of the file header in bytes (always 3)</div><div class="line">  optional uint64 headerLength = 1;</div><div class="line">  // the length of the file header and body in bytes</div><div class="line">  optional uint64 contentLength = 2;</div><div class="line">  // stripes信息</div><div class="line">  repeated StripeInformation stripes = 3;</div><div class="line">  // schema信息</div><div class="line">  repeated Type types = 4;</div><div class="line">  // the user metadata that was added</div><div class="line">  repeated UserMetadataItem metadata = 5;</div><div class="line">  // the total number of rows in the file</div><div class="line">  optional uint64 numberOfRows = 6;</div><div class="line">  // the statistics of each column across the file</div><div class="line">  repeated ColumnStatistics statistics = 7;</div><div class="line">  // the maximum number of rows in each index entry</div><div class="line">  optional uint32 rowIndexStride = 8;</div><div class="line">&#125;</div><div class="line"></div><div class="line">message StripeInformation &#123;</div><div class="line">  // stripe offset</div><div class="line">  optional uint64 offset = 1;</div><div class="line">  // the length of the indexes in bytes</div><div class="line">  optional uint64 indexLength = 2;</div><div class="line">  // the length of the data in bytes</div><div class="line">  optional uint64 dataLength = 3;</div><div class="line">  // the length of the footer in bytes</div><div class="line">  optional uint64 footerLength = 4;</div><div class="line">  // the number of rows in the stripe</div><div class="line">  optional uint64 numberOfRows = 5;</div><div class="line">&#125;</div><div class="line"></div><div class="line">message ColumnStatistics &#123;</div><div class="line">  // the number of values</div><div class="line">  optional uint64 numberOfValues = 1;</div><div class="line">  // At most one of these has a value for any column</div><div class="line">  optional IntegerStatistics intStatistics = 2;</div><div class="line">  optional DoubleStatistics doubleStatistics = 3;</div><div class="line">  optional StringStatistics stringStatistics = 4;</div><div class="line">  optional BucketStatistics bucketStatistics = 5;</div><div class="line">  optional DecimalStatistics decimalStatistics = 6;</div><div class="line">  optional DateStatistics dateStatistics = 7;</div><div class="line">  optional BinaryStatistics binaryStatistics = 8;</div><div class="line">  optional TimestampStatistics timestampStatistics = 9;</div><div class="line">  optional bool hasNull = 10;</div><div class="line">&#125;</div><div class="line"></div><div class="line">message TypeStatistics &#123;</div><div class="line">  optional type minimum = 1;</div><div class="line">  optional type maximum = 2;</div><div class="line">  optional type sum = 3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="读取顺序"><a href="#读取顺序" class="headerlink" title="读取顺序"></a>读取顺序</h3><blockquote>
+<p>在读取文件时，会seek到文件尾部读PostScript，从里面解析到File Footer长度，再读FileFooter，从里面解析到各个Stripe信息，再读各个Stripe，即从后往前读。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DB/" rel="tag"># DB</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/git 使用简易指南/" rel="next" title="Git 使用简易指南">
+                <i class="fa fa-chevron-left"></i> Git 使用简易指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/Presto&Spark/" rel="prev" title="Presto & Spark">
+                Presto & Spark <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/25/ORCFileFormat/"
+           data-title="ORCFileFormat" data-url="http://yoursite.com/2016/11/25/ORCFileFormat/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Alan" />
+          <p class="site-author-name" itemprop="name">Alan</p>
+          <p class="site-description motion-element" itemprop="description">Poem, Program, Philosophy</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-常见数据存储方式："><span class="nav-number">1.</span> <span class="nav-text">1. 常见数据存储方式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-RCFile"><span class="nav-number">2.</span> <span class="nav-text">2. RCFile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-ORCFile"><span class="nav-number">3.</span> <span class="nav-text">3. ORCFile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Stripe"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Stripe</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Index-Data"><span class="nav-number">3.1.1.</span> <span class="nav-text">Index Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Row-Data"><span class="nav-number">3.1.2.</span> <span class="nav-text">Row Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stripe-Footer"><span class="nav-number">3.1.3.</span> <span class="nav-text">Stripe Footer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-File-Tail"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 File Tail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PostScript"><span class="nav-number">3.2.1.</span> <span class="nav-text">PostScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footer"><span class="nav-number">3.2.2.</span> <span class="nav-text">Footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取顺序"><span class="nav-number">3.2.3.</span> <span class="nav-text">读取顺序</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  1991 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan</span>
+</div>
+
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"michael1991"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

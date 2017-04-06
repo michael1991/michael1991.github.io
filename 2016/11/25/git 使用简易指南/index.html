@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Study," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Git 使用简易指南">
+<meta name="keywords" content="Study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 使用简易指南">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/git 使用简易指南/index.html">
+<meta property="og:site_name" content="Alphabet">
+<meta property="og:description" content="Git 使用简易指南">
+<meta property="og:updated_time" content="2016-11-24T16:21:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 使用简易指南">
+<meta name="twitter:description" content="Git 使用简易指南">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/25/git 使用简易指南/"/>
+
+
+
+
+
+  <title> Git 使用简易指南 | Alphabet </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Alphabet</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Chinese phonetic alphabet, English alphabet</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/25/git 使用简易指南/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Alan">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Alphabet">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Alphabet" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git 使用简易指南
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-25T00:21:26+08:00">
+                2016-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Study</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/25/git 使用简易指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/25/git 使用简易指南/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+              <div class="post-description">
+                  Git 使用简易指南
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1、创建新仓库"><a href="#1、创建新仓库" class="headerlink" title="1、创建新仓库:"></a>1、创建新仓库:</h3><pre><code>创建新文件夹-&gt;打开  git init
+</code></pre><h3 id="2、检出仓库"><a href="#2、检出仓库" class="headerlink" title="2、检出仓库"></a>2、检出仓库</h3><pre><code>git clone + 地址/路径
+</code></pre><h3 id="3、添加与提交"><a href="#3、添加与提交" class="headerlink" title="3、添加与提交"></a>3、添加与提交</h3><blockquote>
+<p>添加（缓存区）：</p>
+</blockquote>
+<pre><code>git add &lt;filename&gt;  /  git add *
+</code></pre><blockquote>
+<p>提交（HEAD）：</p>
+</blockquote>
+<pre><code>git commit -m &quot;代码提交信息&quot;
+</code></pre><h3 id="4、推送与改动"><a href="#4、推送与改动" class="headerlink" title="4、推送与改动"></a>4、推送与改动</h3><blockquote>
+<p>推送（分支，默认master）：</p>
+</blockquote>
+<pre><code>git push origin master(master可以替换成想推送的分支)
+</code></pre><blockquote>
+<p>改动：</p>
+</blockquote>
+<pre><code>git remote add origin &lt;server&gt;
+</code></pre><h3 id="5、分支"><a href="#5、分支" class="headerlink" title="5、分支"></a>5、分支</h3><blockquote>
+<p>创建分支：</p>
+</blockquote>
+<pre><code>git checkout -b feature_x (feature_x：分支名字)
+</code></pre><blockquote>
+<p>切换到主分支：</p>
+</blockquote>
+<pre><code>git checkout master
+</code></pre><blockquote>
+<p>删除分支：</p>
+</blockquote>
+<pre><code>git branch -d feature_x
+</code></pre><blockquote>
+<p>将分支推送：</p>
+</blockquote>
+<pre><code>git push origin &lt;branch&gt;
+</code></pre><h3 id="6、更新与合并"><a href="#6、更新与合并" class="headerlink" title="6、更新与合并"></a>6、更新与合并</h3><blockquote>
+<p>将本地仓库更新至最新改动：</p>
+</blockquote>
+<pre><code>git pull
+</code></pre><blockquote>
+<p>合并其他分支到你的当前分支，如master：</p>
+</blockquote>
+<pre><code>git merge &lt;branch&gt;
+</code></pre><blockquote>
+<p>查看差异：</p>
+</blockquote>
+<pre><code>git diss &lt;source_branch&gt; &lt;target_branch&gt;
+</code></pre><h3 id="7、标签"><a href="#7、标签" class="headerlink" title="7、标签"></a>7、标签</h3><blockquote>
+<p>创建一个叫做1.0.0的标签：</p>
+</blockquote>
+<pre><code>git tag 1.0.0 1b2e1d63ff  (1b2e1d63ff是你想要标记的提交ID的前10位自负）
+</code></pre><blockquote>
+<p>获取提交ID：</p>
+</blockquote>
+<pre><code>git log
+</code></pre><h3 id="8、替换本地改动"><a href="#8、替换本地改动" class="headerlink" title="8、替换本地改动"></a>8、替换本地改动</h3><pre><code>git checkout -- &lt;filename&gt;
+</code></pre><h3 id="9、丢弃所有本地改动："><a href="#9、丢弃所有本地改动：" class="headerlink" title="9、丢弃所有本地改动："></a>9、丢弃所有本地改动：</h3><pre><code>git fetch origin
+git reset --hard origin/master
+</code></pre><h3 id="10、显示历史记录时，只显示一行注释信息："><a href="#10、显示历史记录时，只显示一行注释信息：" class="headerlink" title="10、显示历史记录时，只显示一行注释信息："></a>10、显示历史记录时，只显示一行注释信息：</h3><pre><code>git config format.pretty oneline
+</code></pre><h3 id="11、交互的添加文件至缓存区"><a href="#11、交互的添加文件至缓存区" class="headerlink" title="11、交互的添加文件至缓存区"></a>11、交互的添加文件至缓存区</h3><pre><code>git add -i
+</code></pre><h3 id="12、显示提交历史详细"><a href="#12、显示提交历史详细" class="headerlink" title="12、显示提交历史详细"></a>12、显示提交历史详细</h3><pre><code>git log -p 
+</code></pre><h3 id="13、将当前改动提交到缓存区"><a href="#13、将当前改动提交到缓存区" class="headerlink" title="13、将当前改动提交到缓存区"></a>13、将当前改动提交到缓存区</h3><pre><code>git stash
+</code></pre><h3 id="14、从缓存区取出第一个"><a href="#14、从缓存区取出第一个" class="headerlink" title="14、从缓存区取出第一个"></a>14、从缓存区取出第一个</h3><pre><code>git stash pop
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Study/" rel="tag"># Study</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/postgres 常用指令/" rel="next" title="Postgre 常用指令">
+                <i class="fa fa-chevron-left"></i> Postgre 常用指令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/ORCFileFormat/" rel="prev" title="ORCFileFormat">
+                ORCFileFormat <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/25/git 使用简易指南/"
+           data-title="Git 使用简易指南" data-url="http://yoursite.com/2016/11/25/git 使用简易指南/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Alan" />
+          <p class="site-author-name" itemprop="name">Alan</p>
+          <p class="site-description motion-element" itemprop="description">Poem, Program, Philosophy</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建新仓库"><span class="nav-number">1.</span> <span class="nav-text">1、创建新仓库:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、检出仓库"><span class="nav-number">2.</span> <span class="nav-text">2、检出仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、添加与提交"><span class="nav-number">3.</span> <span class="nav-text">3、添加与提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、推送与改动"><span class="nav-number">4.</span> <span class="nav-text">4、推送与改动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、分支"><span class="nav-number">5.</span> <span class="nav-text">5、分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、更新与合并"><span class="nav-number">6.</span> <span class="nav-text">6、更新与合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、标签"><span class="nav-number">7.</span> <span class="nav-text">7、标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、替换本地改动"><span class="nav-number">8.</span> <span class="nav-text">8、替换本地改动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、丢弃所有本地改动："><span class="nav-number">9.</span> <span class="nav-text">9、丢弃所有本地改动：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、显示历史记录时，只显示一行注释信息："><span class="nav-number">10.</span> <span class="nav-text">10、显示历史记录时，只显示一行注释信息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、交互的添加文件至缓存区"><span class="nav-number">11.</span> <span class="nav-text">11、交互的添加文件至缓存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、显示提交历史详细"><span class="nav-number">12.</span> <span class="nav-text">12、显示提交历史详细</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、将当前改动提交到缓存区"><span class="nav-number">13.</span> <span class="nav-text">13、将当前改动提交到缓存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、从缓存区取出第一个"><span class="nav-number">14.</span> <span class="nav-text">14、从缓存区取出第一个</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  1991 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan</span>
+</div>
+
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"michael1991"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
