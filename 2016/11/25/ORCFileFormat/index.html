@@ -91,13 +91,13 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/25/ORCFileFormat/index.html">
 <meta property="og:site_name" content="Alphabet">
 <meta property="og:description" content="ORC File Format">
-<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/RowGroup.jpg">
-<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/OrcFileLayout.png">
+<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/RowGroup.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/OrcFileLayout.png">
 <meta property="og:updated_time" content="2016-11-24T16:21:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ORCFileFormat">
 <meta name="twitter:description" content="ORC File Format">
-<meta name="twitter:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/ORCFileFormat/RowGroup.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2016/11/25/ORCFileFormat/RowGroup.jpg">
 
 
 
@@ -376,7 +376,7 @@
 <li><p>1.3 混合的PAX存储：结合行存储和列存储的优势，RCFile就继承于此思想；</p>
 </li>
 </ul>
-<h1 id="2-RCFile"><a href="#2-RCFile" class="headerlink" title="2. RCFile"></a>2. RCFile</h1><p><img src="ORCFileFormat/RowGroup.jpg" alt="RowGroup.jpg"></p>
+<h1 id="2-RCFile"><a href="#2-RCFile" class="headerlink" title="2. RCFile"></a>2. RCFile</h1><p><img src="/2016/11/25/ORCFileFormat/RowGroup.jpg" alt="RowGroup.jpg"></p>
 <ul>
 <li><p>RowGroup为RCFile的基本单位</p>
 <ul>
@@ -388,7 +388,7 @@
 <li><p>视每一列为无含义的二进制块</p>
 </li>
 </ul>
-<h1 id="3-ORCFile"><a href="#3-ORCFile" class="headerlink" title="3. ORCFile"></a>3. ORCFile</h1><p><img src="ORCFileFormat/OrcFileLayout.png" alt="OrcFileLayout.png"></p>
+<h1 id="3-ORCFile"><a href="#3-ORCFile" class="headerlink" title="3. ORCFile"></a>3. ORCFile</h1><p><img src="/2016/11/25/ORCFileFormat/OrcFileLayout.png" alt="OrcFileLayout.png"></p>
 <h2 id="3-1-Stripe"><a href="#3-1-Stripe" class="headerlink" title="3.1 Stripe"></a>3.1 Stripe</h2><p>每个stripe默认250MB，相当于rcfile的RowGroup，不过大小由4MB变为250MB，提升顺序读的吞吐率。每个Stripe里有三部分组成，分别是Index Data,Row Data,Stripe Footer；</p>
 <h3 id="Index-Data"><a href="#Index-Data" class="headerlink" title="Index Data"></a>Index Data</h3><blockquote>
 <p>一个轻量级的index，默认是每隔1W行做一个索引。这里做的索引只是记录每行的各字段在Row Data中的offset以及每个Column的max和min值。</p>
